@@ -11,5 +11,9 @@ public interface IPolicyHolder {
 	PolicyHolder getPolicyHolderById(int policyHolderId);
 	PolicyHolder addPolicyHolder(PolicyHolder pHolder);
 	void deletePolicyHolder(PolicyHolder pHolder);
+	
+	//update  and phNumber address details
 	void updatePolicyHOlder(int policyHolderId , PolicyHolder policyHolder);
+	
+	
 }

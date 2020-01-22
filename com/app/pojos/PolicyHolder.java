@@ -1,4 +1,4 @@
-//----------------------??????????????????????  orphan removal to be done
+
 
 package com.app.pojos;
 
@@ -62,7 +62,7 @@ public class PolicyHolder {
 
 
 	public PolicyHolder(String fName, String mName, String lName, GENDER gender, String email, MSTATUS mStatus,
-			String phNumber, String aadharID, String pancardID, Date dob, String qualification, ROLE role) {
+			String phNumber, String aadharID, String pancardID, Date dob, String qualification, ROLE role,AddressDetails addressDetails,List<PolicyDetails> policies) {
 		super();
 		this.fName = fName;
 		this.mName = mName;
@@ -76,6 +76,8 @@ public class PolicyHolder {
 		this.dob = dob;
 		this.qualification = qualification;
 		this.role = role;
+		this.addressDetails = addressDetails;
+		this.policies = policies;
 	}
 
 	
@@ -231,7 +233,7 @@ public class PolicyHolder {
 	}
 
 
-	@OneToOne(mappedBy = "policyHolder")
+	@OneToOne(mappedBy = "policyHolder",cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.EAGER)
 	public HealthDetails getHealthDetails() {
 		return healthDetails;
 	}
@@ -241,7 +243,7 @@ public class PolicyHolder {
 		this.healthDetails = healthDetails;
 	}
 
-	@OneToOne(mappedBy = "policyHolderFor")
+	@OneToOne(mappedBy = "policyHolderFor",cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.EAGER)
 	public AddressDetails getAddressDetails() {
 		return addressDetails;
 	}

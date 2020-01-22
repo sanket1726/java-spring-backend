@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.app.pojos.Agent;
+import com.app.pojos.PolicyHolder;
 import com.fasterxml.jackson.databind.ObjectWriter.GeneratorSettings;
 
 @Repository
@@ -31,15 +32,22 @@ public class AgentDaoImpl implements IAgentDao{
 	@Override
 	public Agent getAgentById(int agentid) {
 		//varify before playing
-//		String jpql = "select a from Agent a where a.agentId=:agentid";
-		//return sf.getCurrentSession().createQuery(jpql,Agent.class).getSingleResult();
+// String jpql = "select a from Agent a where a.agentId=:agentid";
+// return sf.getCurrentSession().createQuery(jpql,Agent.class).getSingleResult();
 		return sf.getCurrentSession().get(Agent.class, agentid);
 	} 
 
+//To Do	
+	@Override
+	public List<Agent> policyHoldersForAgent(int agentId) {
+		
+		return null;
+	}
+	
 //add agents method
 	@Override
 	public Agent addAgent(Agent a) {
-		sf.getCurrentSession().persist(a);
+		sf.getCurrentSession().save(a);
 		return a;
 	}
 
@@ -56,13 +64,15 @@ public class AgentDaoImpl implements IAgentDao{
 		oldAgent.setAddressLine1(agent.getAddressLine1());
 		oldAgent.setCity(agent.getCity());
 		oldAgent.setDistrict(agent.getDistrict());
-		oldAgent.setPhNumber(agent.getPhNumber());
 		oldAgent.setState(agent.getState());
+		oldAgent.setPhNumber(agent.getPhNumber()); 
 		sf.getCurrentSession().flush();
-		sf.getCurrentSession().update(agent);
+//		sf.getCurrentSession().update(agent);
+
 		
 	}
 
+		
 //	@Override
 //	public Agent login(Agent a) {
 //		System.out.println("***********************************************************"+a.getAgentId());

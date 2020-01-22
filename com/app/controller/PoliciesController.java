@@ -25,7 +25,7 @@ public class PoliciesController {
 	@Autowired
 	private IPoliciesDao policiesDao;
 	
-	//list all policies
+//list all policies
 	@GetMapping
 	public ResponseEntity<?> listPolicies() {
 		System.out.println("inside policies controller");

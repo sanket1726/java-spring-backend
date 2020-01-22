@@ -46,14 +46,21 @@ public class PolicyHolderDaoImpl implements IPolicyHolder {
 		sf.getCurrentSession().delete(pHolder);
 	}
 
-//edit policyHolder	(ONLY phnNumber and qualification)
+//edit policyHolder	(ONLY phnNumber and address details)
 	@Override
 	public void updatePolicyHOlder(int policyHolderId, PolicyHolder policyHolder) {
-		PolicyHolder oldPOlicyHolder= sf.getCurrentSession().byId(PolicyHolder.class).load(policyHolderId);
-		//AddressDetails oldAddress = sf.getCurrentSession().byId(AddressDetails.class).load(policyHolderId);
-		oldPOlicyHolder.setPhNumber(policyHolder.getPhNumber());
-		oldPOlicyHolder.setQualification(policyHolder.getQualification());
+		PolicyHolder oldPolicyHolder= sf.getCurrentSession().byId(PolicyHolder.class).load(policyHolderId);
+		
+	//address and phNumber	
+		oldPolicyHolder.setPhNumber(policyHolder.getPhNumber());
+		oldPolicyHolder.getAddressDetails().setAddressLine1(policyHolder.getAddressDetails().getAddressLine1());
+		oldPolicyHolder.getAddressDetails().setAddressLine2(policyHolder.getAddressDetails().getAddressLine2());
+		oldPolicyHolder.getAddressDetails().setCity(policyHolder.getAddressDetails().getCity());
+		oldPolicyHolder.getAddressDetails().setDistrict(policyHolder.getAddressDetails().getDistrict());
+		
 		sf.getCurrentSession().flush();
+	//	sf.getCurrentSession().update(policyHolder);
+	
 	}
 
 }
