@@ -78,16 +78,16 @@ public class AgentController {
 		return ResponseEntity.ok().body("Agent has edited");
 	}
 	
-//login	
-//	@PostMapping(path = "/login", consumes = "application/json", produces = "application/json")
-//public ResponseEntity<?> login(@RequestBody Agent a){
-//	System.out.println(a.toString());
-//		Agent login = agentDao.login(a);
-//		if(login!=null) {
-//		System.out.println("2 Milalaaaaaaaaaaaaaaaaaaaaaaaa");
-//			return new ResponseEntity<Agent> (login, HttpStatus.OK);
-//		}
-//		return new ResponseEntity<> (HttpStatus.NO_CONTENT);
-//	}
+//login for agent
+	@GetMapping("/login/{agentId}/{phNumber}")
+	public ResponseEntity<?> agentLogin(@PathVariable int agentId , @PathVariable String phNumber) {
+		try {
+			Agent agentLogin = agentDao.login(agentId, phNumber);
+				return new ResponseEntity<Agent>(agentLogin,HttpStatus.OK);
+		} catch (RuntimeException e) {
+				e.printStackTrace();
+				return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
+		}
+	}
 	
 }

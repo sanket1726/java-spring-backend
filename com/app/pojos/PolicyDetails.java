@@ -43,7 +43,7 @@ public class PolicyDetails {
 
 
 	public PolicyDetails(Integer policyNumber, int planNo, Date dateOfCommencement, Date dateOfMaturity,
-			float premiumAmount, PremiumType premiumType, double sumAssured, PolicyStatus policyStatus) {
+			float premiumAmount, PremiumType premiumType, double sumAssured, PolicyStatus policyStatus,PolicyHolder policyHolderForPolicies) {
 		super();
 		this.policyNumber = policyNumber;
 		this.planNo = planNo;
@@ -53,6 +53,7 @@ public class PolicyDetails {
 		this.premiumType = premiumType;
 		this.sumAssured = sumAssured;
 		this.policyStatus = policyStatus;
+		this.policyHolderForPolicies=policyHolderForPolicies;
 	}
 
 

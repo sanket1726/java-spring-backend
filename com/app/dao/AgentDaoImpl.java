@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.app.pojos.Agent;
+import com.app.pojos.CLIA;
 import com.app.pojos.PolicyHolder;
 import com.fasterxml.jackson.databind.ObjectWriter.GeneratorSettings;
 
@@ -67,18 +68,21 @@ public class AgentDaoImpl implements IAgentDao{
 		oldAgent.setState(agent.getState());
 		oldAgent.setPhNumber(agent.getPhNumber()); 
 		sf.getCurrentSession().flush();
-//		sf.getCurrentSession().update(agent);
-
-		
+//		sf.getCurrentSession().update(agent);		
+	}
+ 
+//login	
+	@Override
+	public Agent login(int agentId, String phNumber) {
+		System.out.println("inside agent login");
+		String jpql = "select a from Agent a where a.agentId=:agentId and a.phNumber=:phNumber";
+		Agent agent= sf.getCurrentSession().createQuery(jpql,Agent.class).setParameter("agentId", agentId).setParameter("phNumber", phNumber).getSingleResult();
+		 
+		if(agent != null)
+			return agent;
+		return null;
 	}
 
-		
-//	@Override
-//	public Agent login(Agent a) {
-//		System.out.println("***********************************************************"+a.getAgentId());
-//		String jpql = "select a from Agent a where a.agentId='"+a.getAgentId()+"'";
-//		Agent log = sf.getCurrentSession().createQuery(jpql, Agent.class).getSingleResult();
-//			return log;
-//	}
+
 
 }

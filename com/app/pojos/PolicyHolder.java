@@ -62,7 +62,7 @@ public class PolicyHolder {
 
 
 	public PolicyHolder(String fName, String mName, String lName, GENDER gender, String email, MSTATUS mStatus,
-			String phNumber, String aadharID, String pancardID, Date dob, String qualification, ROLE role,AddressDetails addressDetails,List<PolicyDetails> policies) {
+			String phNumber, String aadharID, String pancardID, Date dob, String qualification, ROLE role,AddressDetails addressDetails,List<PolicyDetails> policies,HealthDetails healthDetails) {
 		super();
 		this.fName = fName;
 		this.mName = mName;
@@ -78,6 +78,7 @@ public class PolicyHolder {
 		this.role = role;
 		this.addressDetails = addressDetails;
 		this.policies = policies;
+		this.healthDetails = healthDetails;
 	}
 
 	

@@ -12,7 +12,10 @@ public interface IAgentDao {
 	void deleteAgent(Agent a);
 	void updateAgent(int agentId , Agent agent);
 	
-	//To Do
+	
+	//To do
 	List<Agent> policyHoldersForAgent(int agentId);
-	//Agent login(Agent a);
+	
+//agent login	
+	Agent login(int agentId , String phNumber);
 }

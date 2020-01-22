@@ -56,8 +56,9 @@ public class PolicyHolderDaoImpl implements IPolicyHolder {
 		oldPolicyHolder.getAddressDetails().setAddressLine1(policyHolder.getAddressDetails().getAddressLine1());
 		oldPolicyHolder.getAddressDetails().setAddressLine2(policyHolder.getAddressDetails().getAddressLine2());
 		oldPolicyHolder.getAddressDetails().setCity(policyHolder.getAddressDetails().getCity());
+		oldPolicyHolder.getAddressDetails().setState(policyHolder.getAddressDetails().getState());
 		oldPolicyHolder.getAddressDetails().setDistrict(policyHolder.getAddressDetails().getDistrict());
-		
+		oldPolicyHolder.getAddressDetails().setZipCode(policyHolder.getAddressDetails().getZipCode());
 		sf.getCurrentSession().flush();
 	//	sf.getCurrentSession().update(policyHolder);
 	

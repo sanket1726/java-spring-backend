@@ -107,7 +107,7 @@ public class Agent {
 
 	public Agent(String fName, String mName, String lName, GENDER gender, String email, MSTATUS mStatus,
 			String phNumber, String aadharID, String pancardID, Date dob, String qualification, String addressLine1,
-			String city, String district, String state, Integer noOfCustomers, Integer noOfPolicies, String dlNumber, ROLE role) {
+			String city, String district, String state, Integer noOfCustomers, Integer noOfPolicies, String dlNumber, ROLE role,CLIA cliaId) {
 		super();
 		this.fName = fName;
 		this.mName = mName;
@@ -128,6 +128,7 @@ public class Agent {
 		this.noOfPolicies = noOfPolicies;
 		this.dlNumber = dlNumber;
 		this.role = role;
+		this.cliaId = cliaId;
 	}
 
 	
