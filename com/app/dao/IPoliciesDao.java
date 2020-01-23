@@ -7,5 +7,5 @@ import com.app.pojos.PolicyDetails;
 public interface IPoliciesDao {
 	List<PolicyDetails> polciesList();
 	PolicyDetails getPolicyBypolicyNumber(int policyNumber);
-	PolicyDetails addPolicy(PolicyDetails p);
+	PolicyDetails addPolicy(int custId ,PolicyDetails p);
 }

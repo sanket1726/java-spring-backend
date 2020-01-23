@@ -1,5 +1,7 @@
 package com.app.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +21,17 @@ public class CLIAController {
 
 	@Autowired
 	private ICliaDao cliaDao;
+	
+	@GetMapping
+	public ResponseEntity<?> listCLIA() {
+		System.out.println("inside clia controller");
+		List<CLIA> cliaDetails = cliaDao.cliaList();
+		
+		System.out.println(cliaDetails.toString());
+			if(cliaDetails.size() == 0)
+				return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+			return new ResponseEntity<List<CLIA>>(cliaDetails,HttpStatus.OK);
+	}
 	
 	@GetMapping("/login/{cliaId}/{phNumber}")
 	public ResponseEntity<?> cliaLogin(@PathVariable int cliaId,@PathVariable String phNumber) {

@@ -22,6 +22,8 @@ public class HealthDetails {
 	private float height;
 	private float weight;
 	private float bmi=height*weight;
+	
+	@Enumerated(EnumType.STRING)
 	private BloodGroup bloodGroup;
 	private PolicyHolder policyHolder;
 	

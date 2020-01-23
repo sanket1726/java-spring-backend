@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.dao.IPolicyHolder;
@@ -49,13 +50,13 @@ public class PolicyHolderController {
 		return new ResponseEntity<PolicyHolder>(ph, HttpStatus.OK);
 	}
 
-	// add policyHolder
 
-	@PostMapping
-	public ResponseEntity<?> addNewPolicyHolder(@RequestBody PolicyHolder ph) {
-		System.out.println("inside add policyHolder controller");
+// add policyHolder with increment of no of customers;
+	@PutMapping("/addCustomer/{agentId}")
+	public ResponseEntity<?> addNewPolicyHolder(@PathVariable int agentId,@RequestBody PolicyHolder ph) {
+		System.out.println("inside add policyHolder controller"+agentId);
 		try {
-			return new ResponseEntity<PolicyHolder>(policyHoldersDao.addPolicyHolder(ph), HttpStatus.CREATED);
+			return new ResponseEntity<PolicyHolder>(policyHoldersDao.addPolicyHolder(agentId,ph), HttpStatus.CREATED);
 		} catch (RuntimeException e) {
 			e.printStackTrace();
 			return new ResponseEntity<Void>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -71,7 +72,9 @@ public class PolicyHolderController {
 		policyHoldersDao.deletePolicyHolder(ph);
 	}
 	
+	
 	//Edit PolicyHolder by Id
+	
 	@PutMapping("/{policyHolderId}")
 	public ResponseEntity<?> update(@PathVariable("policyHolderId") int policyHolderId,@RequestBody PolicyHolder policyHolder){
 			policyHoldersDao.updatePolicyHOlder(policyHolderId, policyHolder);

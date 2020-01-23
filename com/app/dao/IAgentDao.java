@@ -18,4 +18,8 @@ public interface IAgentDao {
 	
 //agent login	
 	Agent login(int agentId , String phNumber);
+	void updateCountOfCustomers(int agentId);
+	
+//update no of cutomers
+	
 }

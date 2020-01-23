@@ -19,19 +19,18 @@ public class CLIA
 	
 	private Integer cliaId;
 	
-	
 	private String fName;
 	
-	@Column(name = "mName",nullable = false)
+	@Column(name = "mName")
 	private String mName;
 	
-	@Column(name = "lName",nullable = false)
+	@Column(name = "lName")
 	private String lName;
 	
 	
 	private GENDER gender;
 	
-	@Column(name = "email",unique = true,nullable = false)
+	@Column(name = "email",unique = true)
 	private String email;
 	
 	private MSTATUS mStatus;
@@ -86,10 +85,6 @@ public class CLIA
 	System.out.println("In CLIA ctor");
 	}
 
-
-
-	
-	
 	
 	public CLIA(String fName, String mName, String lName, GENDER gender, String email, MSTATUS mStatus,
 			String phNumber, String aadharID, String pancardID, String qualification,Date dob, String addressLine1, String city,

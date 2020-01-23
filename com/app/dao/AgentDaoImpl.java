@@ -21,6 +21,9 @@ public class AgentDaoImpl implements IAgentDao{
 	@Autowired
 	private SessionFactory sf;
 	
+	
+	@Autowired
+	private ICliaDao cliaDao;
 //list agents method	
 	@Override
 	public List<Agent> agentsList() {
@@ -48,6 +51,8 @@ public class AgentDaoImpl implements IAgentDao{
 //add agents method
 	@Override
 	public Agent addAgent(Agent a) {
+		
+		cliaDao.updateCountOfAgent();
 		sf.getCurrentSession().save(a);
 		return a;
 	}
@@ -83,6 +88,14 @@ public class AgentDaoImpl implements IAgentDao{
 		return null;
 	}
 
-
+//update number of customers 
+	@Override
+	public void updateCountOfCustomers(int agentId) {
+		Agent oldCount=sf.getCurrentSession().byId(Agent.class).load(agentId);
+		oldCount.setNoOfCustomers(oldCount.getNoOfCustomers()+1);
+//		int icount = oldCount.getNoOfCustomers()+1;
+//		oldCount.setNoOfCustomers(icount);
+//		sf.getCurrentSession().update(agent);		
+	}
 
 }

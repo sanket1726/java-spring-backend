@@ -17,6 +17,9 @@ public class PoliciesDaoImpl implements IPoliciesDao {
 	@Autowired
 	private SessionFactory sf;
 	
+	@Autowired
+	private IPolicyHolder policyHolderDao;
+	
 //list policies	
 	@Override
 	public List<PolicyDetails> polciesList() {
@@ -33,13 +36,18 @@ public class PoliciesDaoImpl implements IPoliciesDao {
 
 //add policy details	
 	@Override
-	public PolicyDetails addPolicy(PolicyDetails po) {
+	public PolicyDetails addPolicy(int custId , PolicyDetails po) {
+		
+	//method calling for increasing no of policies of customer
+		policyHolderDao.updateCountOfPolicies(custId);
+		
 		sf.getCurrentSession().persist(po);
 		return po;
 	}
 
 //add policydetails from custId
 	public PolicyDetails addPolicyWithCustId(int custId , PolicyDetails po) {
+		
 		sf.getCurrentSession().persist(po);
 		return po;
 	}

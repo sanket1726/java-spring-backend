@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -46,20 +47,19 @@ public class PoliciesController {
 		return new ResponseEntity<PolicyDetails>(po, HttpStatus.OK);
 	}
 	
-//add policy
-	@PostMapping
-	public ResponseEntity<?> addNewPolicy(@RequestBody PolicyDetails po) {
-		System.out.println("inside add policy controller");
+	
+//add policy with noOfPolicies increment in policyHolder
+//	@PostMapping
+	@PutMapping("/addPolicy/{custId}")
+	public ResponseEntity<?> addNewPolicy(@PathVariable int custId ,  @RequestBody PolicyDetails po) {
+		System.out.println("inside add policy controller"+custId);
 		try {
-			return new ResponseEntity<PolicyDetails>(policiesDao.addPolicy(po), HttpStatus.CREATED);
+			return new ResponseEntity<PolicyDetails>(policiesDao.addPolicy(custId,po), HttpStatus.CREATED);
 		} catch (RuntimeException e) {
 			e.printStackTrace();
 			return new ResponseEntity<Void>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-
-//add policy using customer Id
-	//To Do
 	
 	
 }

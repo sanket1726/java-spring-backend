@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.app.pojos.AddressDetails;
 import com.app.pojos.Agent;
 import com.app.pojos.PolicyHolder;
+import com.fasterxml.jackson.core.JsonParser;
 
 @Repository
 @Transactional
@@ -17,6 +18,9 @@ public class PolicyHolderDaoImpl implements IPolicyHolder {
 	
 	@Autowired
 	private SessionFactory sf;
+	
+	@Autowired
+	private IAgentDao agentDao;
 	
 //list policyHolders	
 	@Override
@@ -34,9 +38,17 @@ public class PolicyHolderDaoImpl implements IPolicyHolder {
 	}
 
 //add policyHolder	
+//public PolicyHolder addPolicyHolder(PolicyHolder pHolder)
 	@Override
-	public PolicyHolder addPolicyHolder(PolicyHolder pHolder) {
+	
+	public PolicyHolder addPolicyHolder(int agentId , PolicyHolder pHolder) {
+		
+		//int custId =pHolder.getCustId();
+		
+		//oldPolicyHolder.getAgentId();
+		agentDao.updateCountOfCustomers(agentId);
 		sf.getCurrentSession().persist(pHolder);
+
 		return pHolder;
 	}
 
@@ -62,6 +74,14 @@ public class PolicyHolderDaoImpl implements IPolicyHolder {
 		sf.getCurrentSession().flush();
 	//	sf.getCurrentSession().update(policyHolder);
 	
+	}
+
+//increment count of policies	
+	@Override
+	public void updateCountOfPolicies(int custId) {
+		PolicyHolder oldCount = sf.getCurrentSession().byId(PolicyHolder.class).load(custId);
+		oldCount.setNoOfPolicies(oldCount.getNoOfPolicies()+1);
+		sf.getCurrentSession().flush();
 	}
 
 }

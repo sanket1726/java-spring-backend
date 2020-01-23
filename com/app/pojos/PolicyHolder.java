@@ -49,6 +49,9 @@ public class PolicyHolder {
 	private String dlNumber;
 	private HealthDetails healthDetails;
 	private AddressDetails addressDetails;
+	@Column(name = "noOfPolicies")
+	private Integer noOfPolicies;
+	
 	private List<PolicyDetails> policies = new ArrayList<>();
 	
 	
@@ -62,7 +65,8 @@ public class PolicyHolder {
 
 
 	public PolicyHolder(String fName, String mName, String lName, GENDER gender, String email, MSTATUS mStatus,
-			String phNumber, String aadharID, String pancardID, Date dob, String qualification, ROLE role,AddressDetails addressDetails,List<PolicyDetails> policies,HealthDetails healthDetails) {
+			String phNumber, String aadharID, String pancardID, Date dob, String qualification, ROLE role,AddressDetails addressDetails,List<PolicyDetails> policies,HealthDetails healthDetails
+			, Agent agentId , int noOfPolicies) {
 		super();
 		this.fName = fName;
 		this.mName = mName;
@@ -79,10 +83,13 @@ public class PolicyHolder {
 		this.addressDetails = addressDetails;
 		this.policies = policies;
 		this.healthDetails = healthDetails;
+		this.agentId = agentId;
+		this.noOfPolicies = noOfPolicies;
 	}
 
 	
 	//============================================+++GETTERS AND SETTERS===================================================//
+
 	@Id
 	@Column(name = "custId")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -267,5 +274,18 @@ public class PolicyHolder {
 	public void setRole(ROLE role) {
 		this.role = role;
 	}
+
+	
+//new entity
+	public Integer getNoOfPolicies() {
+		return noOfPolicies;
+	}
+
+
+	public void setNoOfPolicies(Integer noOfPolicies) {
+		this.noOfPolicies = noOfPolicies;
+	}
+	
+	
 	
 }

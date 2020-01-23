@@ -9,11 +9,17 @@ public interface IPolicyHolder {
 
 	List<PolicyHolder> policyHoldersList();
 	PolicyHolder getPolicyHolderById(int policyHolderId);
-	PolicyHolder addPolicyHolder(PolicyHolder pHolder);
+	//PolicyHolder addPolicyHolder(PolicyHolder pHolder);
+	
+	
+	//try
+	PolicyHolder addPolicyHolder(int agentId , PolicyHolder pHolder);
+	
 	void deletePolicyHolder(PolicyHolder pHolder);
 	
 	//update  and phNumber address details
 	void updatePolicyHOlder(int policyHolderId , PolicyHolder policyHolder);
+	void updateCountOfPolicies(int custId);
 	
 	
 }

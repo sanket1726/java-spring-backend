@@ -98,7 +98,7 @@ public class Agent {
 	
 	List<PolicyHolder> policyHolders = new ArrayList<>();
 	
-	private CLIA cliaId;
+	private CLIA cliaId ;
 	
 //===================Constructors===============//
 	public Agent() {
