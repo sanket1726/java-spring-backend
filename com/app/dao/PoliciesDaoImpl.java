@@ -46,11 +46,11 @@ public class PoliciesDaoImpl implements IPoliciesDao {
 	}
 
 //add policydetails from custId
-	public PolicyDetails addPolicyWithCustId(int custId , PolicyDetails po) {
+/*	public PolicyDetails addPolicyWithCustId(int custId , PolicyDetails po) {
 		
 		sf.getCurrentSession().persist(po);
 		return po;
 	}
-	
+	*/
 
 }

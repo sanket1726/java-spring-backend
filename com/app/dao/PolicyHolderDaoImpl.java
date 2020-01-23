@@ -84,4 +84,16 @@ public class PolicyHolderDaoImpl implements IPolicyHolder {
 		sf.getCurrentSession().flush();
 	}
 
+//login	
+	@Override
+	public PolicyHolder login(int custId, String phNumber) {
+		System.out.println("inside cust login");
+		String jpql = "select c from PolicyHolder c where c.custId=:custId and c.phNumber=:phNumber";
+		PolicyHolder policyHolder= sf.getCurrentSession().createQuery(jpql,PolicyHolder.class).setParameter("custId",custId).setParameter("phNumber", phNumber).getSingleResult();
+		 
+		if(policyHolder != null)
+			return policyHolder;
+		return null;
+	}
+
 }

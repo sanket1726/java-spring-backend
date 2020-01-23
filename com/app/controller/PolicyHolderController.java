@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.dao.IPolicyHolder;
+import com.app.pojos.Agent;
 import com.app.pojos.PolicyHolder;
 
 @CrossOrigin
@@ -65,13 +66,13 @@ public class PolicyHolderController {
 
 	// delete policyHolder by Id
 
-	@DeleteMapping("/{policyHolderId}")
+/*	@DeleteMapping("/{policyHolderId}")
 	public void deletePolicyHolderById(@PathVariable int policyHolderId) {
 		System.out.println("inside delete method of controller " + policyHolderId);
 		PolicyHolder ph = policyHoldersDao.getPolicyHolderById(policyHolderId);
 		policyHoldersDao.deletePolicyHolder(ph);
 	}
-	
+	*/
 	
 	//Edit PolicyHolder by Id
 	
@@ -81,4 +82,17 @@ public class PolicyHolderController {
 		return ResponseEntity.ok().body("POlicy Holder has Edited");
 	}
 
+//Login for customer
+	@GetMapping("/login/{custId}/{phNumber}")
+	public ResponseEntity<?> policyHolder(@PathVariable int custId , @PathVariable String phNumber) {
+		try {
+			PolicyHolder customerLogin = policyHoldersDao.login(custId, phNumber);
+				return new ResponseEntity<PolicyHolder>(customerLogin,HttpStatus.OK);
+		} catch (RuntimeException e) {
+			e.printStackTrace();
+			return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
+
+		}
+	}
+	
 }

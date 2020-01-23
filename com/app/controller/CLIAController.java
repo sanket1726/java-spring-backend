@@ -8,10 +8,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.dao.ICliaDao;
+import com.app.pojos.Agent;
 import com.app.pojos.CLIA;
 
 @RestController
@@ -22,6 +25,7 @@ public class CLIAController {
 	@Autowired
 	private ICliaDao cliaDao;
 	
+//clia details	
 	@GetMapping
 	public ResponseEntity<?> listCLIA() {
 		System.out.println("inside clia controller");
@@ -33,6 +37,7 @@ public class CLIAController {
 			return new ResponseEntity<List<CLIA>>(cliaDetails,HttpStatus.OK);
 	}
 	
+//login
 	@GetMapping("/login/{cliaId}/{phNumber}")
 	public ResponseEntity<?> cliaLogin(@PathVariable int cliaId,@PathVariable String phNumber) {
 		try {
@@ -43,4 +48,13 @@ public class CLIAController {
 			return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
 		}	
 	}
+	
+	
+	//Edit Clia by Id
+		@PutMapping("/{cliaId}")
+		public  ResponseEntity<?> update(@PathVariable("cliaId") int cliaId,@RequestBody CLIA clia){
+			cliaDao.updateCLIA(cliaId, clia);
+			return ResponseEntity.ok().body("CLIA has edited");
+		}
+		
 }
