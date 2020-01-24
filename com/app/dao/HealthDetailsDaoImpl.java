@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.app.pojos.HealthDetails;
+import com.app.pojos.PolicyHolder;
 
 @Repository
 @Transactional
@@ -15,10 +16,14 @@ public class HealthDetailsDaoImpl implements IHealthDetailsDao {
 	private SessionFactory sf;
 	
 	@Override
-	public HealthDetails addHealthDetails(HealthDetails health) {
+	public HealthDetails addHealthDetails(HealthDetails health,Integer custID) {
 		
-		sf.getCurrentSession().persist(health);
+		int i= custID;
+		PolicyHolder h = sf.getCurrentSession().get(PolicyHolder.class, i);
+		health.setPolicyHolder(h);
+		sf.getCurrentSession().persist(health);	
 		return health;
 	}
-
 }
+
+

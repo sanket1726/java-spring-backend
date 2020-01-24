@@ -34,12 +34,13 @@ public class HealthDetails {
 	}
 
 
-	public HealthDetails(float height, float weight, float bmi, BloodGroup bloodGroup) {
+	public HealthDetails(float height, float weight, float bmi, BloodGroup bloodGroup,PolicyHolder policyHolder) {
 		super();
 		this.height = height;
 		this.weight = weight;
 		this.bmi = bmi;
 		this.bloodGroup = bloodGroup;
+		this.policyHolder = policyHolder;
 	}
 
 	
@@ -108,6 +109,13 @@ public class HealthDetails {
 
 	public void setPolicyHolder(PolicyHolder policyHolder) {
 		this.policyHolder = policyHolder;
+	}
+
+
+	@Override
+	public String toString() {
+		return "HealthDetails [hSrNo=" + hSrNo + ", height=" + height + ", weight=" + weight + ", bmi=" + bmi
+				+ ", bloodGroup=" + bloodGroup + "]";
 	}
 	
 }

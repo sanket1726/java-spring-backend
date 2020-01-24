@@ -57,7 +57,7 @@ public class CLIAImpl implements ICliaDao {
 //increase  no. of agetns by 1
 	@Override
 	public void updateCountOfAgent() {
-		CLIA oldCount=sf.getCurrentSession().byId(CLIA.class).load(1);
+		CLIA oldCount=sf.getCurrentSession().byId(CLIA.class).load(15260);
 		int i = oldCount.getNoOfAgents()+1;
 		oldCount.setNoOfAgents(i);
 		System.out.println("count"+i);
