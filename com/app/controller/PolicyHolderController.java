@@ -53,9 +53,10 @@ public class PolicyHolderController {
 
 
 // add policyHolder with increment of no of customers;
-	@PutMapping("/addCustomer/{agentId}")
-	public ResponseEntity<?> addNewPolicyHolder(@PathVariable int agentId,@RequestBody PolicyHolder ph) {
+	@PutMapping(value="/addCustomer/{agentId}",consumes= "application/json",produces = "application/json")
+	public ResponseEntity<?> addNewPolicyHolder(@PathVariable Integer agentId,@RequestBody PolicyHolder ph) {
 		System.out.println("inside add policyHolder controller"+agentId);
+		//int aId = agentId;
 		try {
 			return new ResponseEntity<PolicyHolder>(policyHoldersDao.addPolicyHolder(agentId,ph), HttpStatus.CREATED);
 		} catch (RuntimeException e) {
@@ -94,5 +95,17 @@ public class PolicyHolderController {
 
 		}
 	}
+	
+//get policyHolder by agentId
+	@GetMapping("/getCustomersByAgentId/{agentId}") 
+	public ResponseEntity<?> listPolicyHoldersByAgentId(@PathVariable int agentId) {
+		System.out.println("inside list policyHolders");
+		List<PolicyHolder> allPolicyHolders = policyHoldersDao.policyHoldersByAgentId(agentId);
+		
+		if (allPolicyHolders.size() == 0)
+			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+		return new ResponseEntity<List<PolicyHolder>>(allPolicyHolders, HttpStatus.OK);
+	}	
+	
 	
 }

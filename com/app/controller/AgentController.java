@@ -74,7 +74,7 @@ public class AgentController {
 	}
 	
 //Edit Agent by Id
-	@PutMapping("/{agentId}")
+	@PutMapping("/edit-agent/{agentId}")
 	public  ResponseEntity<?> update(@PathVariable("agentId") int agentId,@RequestBody Agent agent){
 		agentDao.updateAgent(agentId, agent);
 		return ResponseEntity.ok().body("Agent has edited");

@@ -15,7 +15,7 @@ public interface IPolicyHolder {
 	
 	
 //tried and work successfully
-	PolicyHolder addPolicyHolder(int agentId , PolicyHolder pHolder);
+	PolicyHolder addPolicyHolder(Integer agentId , PolicyHolder pHolder);
 	
 	void deletePolicyHolder(PolicyHolder pHolder);
 	
@@ -27,5 +27,9 @@ public interface IPolicyHolder {
 	
 //login 
 	PolicyHolder login(int custId , String phNumber);
+
+	List<PolicyHolder> policyHoldersByAgentId(int agentId);
+	
+//select policy Holders by agentid
 	
 }

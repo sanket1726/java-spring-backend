@@ -41,12 +41,14 @@ public class PolicyHolderDaoImpl implements IPolicyHolder {
 //public PolicyHolder addPolicyHolder(PolicyHolder pHolder)
 	@Override
 	
-	public PolicyHolder addPolicyHolder(int agentId , PolicyHolder pHolder) {
+	public PolicyHolder addPolicyHolder(Integer agentId , PolicyHolder pHolder) {
 		
-		//int custId =pHolder.getCustId();
 		
-		//oldPolicyHolder.getAgentId();
-		agentDao.updateCountOfCustomers(agentId);
+		
+		int aId = agentId;
+		agentDao.updateCountOfCustomers(aId);
+		Agent a = sf.getCurrentSession().get(Agent.class, aId);
+		pHolder.setAgentId(a);
 		sf.getCurrentSession().persist(pHolder);
 
 		return pHolder;
@@ -95,5 +97,13 @@ public class PolicyHolderDaoImpl implements IPolicyHolder {
 			return policyHolder;
 		return null;
 	}
+
+	@Override
+	public List<PolicyHolder> policyHoldersByAgentId(int agentId) {
+		String jpql = "select c from PolicyHolder c where c.agentId=:agentId";
+		return sf.getCurrentSession().createQuery(jpql,PolicyHolder.class).setParameter("agentId",agentId).getResultList();
+		
+	}
+	
 
 }
