@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.app.dao.IAgentDao;
 import com.app.dao.ICliaDao;
 import com.app.pojos.Agent;
+import com.app.pojos.PolicyDetails;
+import com.app.pojos.PolicyHolder;
 
 @CrossOrigin
 @RestController
@@ -47,7 +49,14 @@ public class AgentController {
 	public ResponseEntity<?> getAgentByAgentId(@PathVariable int agentId){
 		System.out.println("in agent by id"+agentId);
 		Agent a = agentDao.getAgentById(agentId);
-			if(a == null)
+		List<PolicyDetails>	p1;
+		List<PolicyHolder> ph=	a.getPolicyHolders();
+			for (PolicyHolder policyHolder : ph) {
+				if(policyHolder.getCustId()== agentId)
+					p1= policyHolder.getPolicies(); 
+				
+			}
+				if(a == null)
 				return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
 		return new ResponseEntity<Agent>(a,HttpStatus.OK);
 	}
